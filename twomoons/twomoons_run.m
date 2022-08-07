@@ -34,8 +34,8 @@ folder='blocked'
 % "folder" is the name of the folder where you want your results
 % to be stored in. It MUST be created before running this script or else it will result in an error.
 % The whole path to access the folder can be given as input, allowing you to run the script from any other folder.
-if ~exist(folder, 'dir')
-    error('A folder to store your results must be created first and must be named as the sampler you wish to use.')
+if ~exist(folder, 'dir') || ~strcmp(folder,sampling)
+    error('A folder to store your results must be created first and must be named exactly as the sampler you wish to use.')
 end
 
 % set observed data
