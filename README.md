@@ -5,7 +5,16 @@ Each subfolder implements a different case-study, see the paper for details. Go 
 
 Example: if you wish to run the 'blocked' sampler for the twomoons case study, first create a folder twomoons\blocked, then run twomoons_run.
 
-For your ease, in the 'twomoons' case study, an empty subfolder 'blocked' is already existing, so by launching twomoons_run using the preset sampling='blocked' option, the blocked folder will be filled-in with output files.
+Output files: the subfolder with inference results will contain many files upon completion of a run. Here is a description:
 
-Output files: the subfolder with inference results will contain many files upon completion of a run. Here are the files produced:
-- 
+- posterior draws: a typical file name ABCdraws_stageX_attemptY_copulaZ_margA_nuB_numargC_partN
+  This is a matrix of d x N values containing N parameters draws (particles) for each of the d parameters to infer. The X in 'stageX' is the iteration number the draws have been sampled at. The Y in 'attemptY' is the ID of the inference run (it is possible to run several inference runs on the same dataset, one after the other). Z, A, Band C in 'copulaZ_margA_nuB_numargC' refer to the type of copula (Z=0 means non copula method is used. See the comments in the run file for more info about Z, A, B and C). N in 'partN' denotes the number of parameter draws, also named "particles".
+  
+The following files have a similar structure as the posterior draws files. We do not repeat the similar features and only focus onnthe differences
+
+- ess_stageX_attemptY_copulaZ_margA_nuB_numargC_partN: contains the value of the effective sample size (ESS) at the given iteration, at the given attempt etc.
+- evaltime_stageX_attemptY_copulaZ_margA_nuB_numargC_partN: the number of seconds required to accept N draws at the given iteration, at the given attempt etc.
+- numproposals_stageX_attemptY_copulaZ_margA_nuB_numargC_partN: the number of particles proposed (ie both the accepted and rejected), at the given attempt etc.
+- weights_stageX_attemptY_copulaZ_margA_nuB_numargC_partN: the vector of N normalised importance weights asscoiated to ach of the N accepted particles at the given iteration, at the given attempt etc.
+
+
