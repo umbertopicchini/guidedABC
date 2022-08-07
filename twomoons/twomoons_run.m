@@ -1,5 +1,5 @@
-% In the following, you can find instructions on how to run
-% "abc_sequential_fixed_thresholds", allowing to sample from any of the samplers in Picchini and Tamborrino, 2022. 
+% In the following, you can find instructions on how to run "abc_sequential_fixed_thresholds", allowing to sample from any of the
+% samplers in Picchini and Tamborrino (2002) for the case of a vector of prefixed thresholds.
 
 rng(100)
 
@@ -31,8 +31,7 @@ nu_marg=5;  % any other number is fine, as it is not used (since type_copula = 0
 % set nu to any number, as its input is needed, despite not using it.
 
 folder='blocked'
-% "folder" is the name of the folder where you want your results
-% to be stored in. It MUST be created before running this script or else it will result in an error.
+% "folder" is the name of the folder where you want your results to be stored in. It MUST be created before running this script or else it will result in an error.
 % The whole path to access the folder can be given as input, allowing you to run the script from any other folder.
 if ~exist(folder, 'dir') || ~strcmp(folder,sampling)
     error('A folder to store your results must be created first and must be named exactly as the sampler you wish to use.')
@@ -41,8 +40,7 @@ end
 % set observed data
 yobs = [0;0];
 
-%::: ABC PILOT to collect simulated summaries and compute a matrix that
-%weights them
+%::: ABC PILOT to collect simulated summaries and compute a matrix that weights them
 size_pilot = 5000;
 summaries_pilot = zeros(size_pilot,2);
 abc_distances = zeros(size_pilot,1);
@@ -71,9 +69,8 @@ parmask        = [ 1      1];  % 1= this is a parameter to infer; 0 = this is a 
 % ABC settings
 numparticles = 1000;
 ABCthreshold = [4 3 2 1 0.5 0.4 0.3 0.2 0.1 0.08 0.06 ];  % sequence of prefixed ABC thresholds, one for each iteration
-problem = 'twomoons';
-numattempts = 10; % number of independent repetitions of the experiment, on the same data (useful to compute median of results etc)
-
+problem = 'twomoons'; % a string specifying the name of a case study
+numattempts = 1; % number of independent repetitions of the experiment, on the same data 
 
 for attempt = 1:numattempts 
    ABCdraws = abc_sequential_fixed_thresholds(problem,yobs,covariates,parmask,parbase,ABCthreshold,summ_weights,numparticles,sampling,attempt,nu,type_copula,type_marginals,nu_marg,folder);
