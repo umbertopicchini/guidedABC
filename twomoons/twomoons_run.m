@@ -70,7 +70,7 @@ parmask        = [ 1      1];  % 1= this is a parameter to infer; 0 = this is a 
 numparticles = 1000;
 ABCthreshold = [4 3 2 1 0.5 0.4 0.3 0.2 0.1 0.08 0.06 ];  % sequence of prefixed ABC thresholds, one for each iteration
 problem = 'twomoons'; % a string specifying the name of a case study
-numattempts = 1; % number of independent repetitions of the experiment, on the same data 
+numattempts = 1; % number of independent repetitions of the experiment, on the same data  (set to 10 in the paper)
 
 for attempt = 1:numattempts 
    ABCdraws = abc_sequential_fixed_thresholds(problem,yobs,covariates,parmask,parbase,ABCthreshold,summ_weights,numparticles,sampling,attempt,nu,type_copula,type_marginals,nu_marg,folder);
