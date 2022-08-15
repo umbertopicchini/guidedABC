@@ -37,7 +37,7 @@ if ~exist(folder, 'dir') || ~strcmp(folder,sampling)
     error('A folder to store your results must be created first and must be named exactly as the sampler you wish to use.')
 end
 
-% set observed data
+% set observed data (*MUST BE A VERTICAL VECTOR*)
 yobs = [0;0];
 
 %::: ABC PILOT to collect simulated summaries and compute a matrix that weights them
