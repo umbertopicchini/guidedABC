@@ -61,6 +61,7 @@ weights = ones(1,numparticles);
 normweights = weights./sum(weights);
 ess = 1/sum(normweights.^2)  % the Effective Sample Size
 save(sprintf('%s/ess_stage%d_attempt%d_copula%d_marg%d_nu%d_numarg%1.1f_part%d.dat',folder,t,attempt,type_copula,type_margin,nu,nu_marg,numparticles),'ess','-ascii')
+save(sprintf('%s/weights_stage%d_attempt%d_copula%d_marg%d_nu%d_numarg%1.1f_part%d.txt',folder,t,attempt,type_copula,type_margin,nu,nu_marg,numparticles),'normweights','-ascii')
 all_accepted_thetasimsum = [ABCdraws;simsumm_accepted];
 %all_cov_thetasimsum = cov(all_accepted_thetasimsum');
 
@@ -427,7 +428,7 @@ while ABCthreshold > ABCthreshold_final  % keep doing as long as acceptance rate
     save(sprintf('%s/numproposals_stage%d_attempt%d_copula%d_marg%d_nu%d_numarg%1.1f_part%d.dat',folder,t,attempt,type_copula,type_margin,nu,nu_marg,numparticles),'numproposals','-ascii')
     save(sprintf('%s/numproposals0_stage%d_attempt%d_copula%d_marg%d_nu%d_numarg%1.1f_part%d.dat',folder,t,attempt,type_copula,type_margin,nu,nu_marg,numparticles),'numproposals0','-ascii')
     save(sprintf('%s/ess_stage%d_attempt%d_copula%d_marg%d_nu%d_numarg%1.1f_part%d.dat',folder,t,attempt,type_copula,type_margin,nu,nu_marg,numparticles),'ess','-ascii')
-
+    save(sprintf('%s/weights_stage%d_attempt%d_copula%d_marg%d_nu%d_numarg%1.1f_part%d.txt',folder,t,attempt,type_copula,type_margin,nu,nu_marg,numparticles),'normweights','-ascii')
     %  summ_weights = diag(mad(simsumm_all',0).^2);
   
     all_accepted_thetasimsum = [ABCdraws;simsumm_accepted];
