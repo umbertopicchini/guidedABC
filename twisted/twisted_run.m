@@ -74,6 +74,7 @@ ABCthreshold = 50; % the starting threshold
 alpha = 1; % this is a percentile (\psi in the paper), determining the ABC threshold at each iteration. 
 problem = 'twisted'; % a string specifying the name of a case study
 ABCthreshold_final = 0.25; % stop as soon as the threshold becomes smaller than this value
+                           % WARNING: you may want to enlarge ABCthreshold_final. Most samplers will struggle to reach this value.
 numattempt = 1; % number of independent repetitions of the experiment, on the same data (set to 10 in the paper)
 
 tic
