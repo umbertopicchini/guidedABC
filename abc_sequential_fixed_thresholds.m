@@ -248,7 +248,6 @@ while t< length(ABCthreshold_vector) % keep doing as long as acceptance rate req
     
     success = 0;
     numproposals = 0;
-    numproposals0 = 0;
     
     tStart = tic;
     
@@ -308,10 +307,6 @@ while t< length(ABCthreshold_vector) % keep doing as long as acceptance rate req
            end           
 
            prior = feval([problem, '_prior'],theta,0);
-           if prior == 0
-               numproposals0=numproposals0+1;
-               continue  % go back to the while loop since the proposal is inadmissible
-           end
            bigtheta = param_unmask(theta,parmask,parbase);
            simdata = feval([problem, '_model'],bigtheta,covariates,1);
            simsumm = feval([problem, '_abc_summaries'],simdata);
@@ -389,7 +384,6 @@ while t< length(ABCthreshold_vector) % keep doing as long as acceptance rate req
     save(sprintf('%s/ABCthreshold_stage%d_attempt%d_copula%d_marg%d_nu%d_numarg%1.1f_part%d.txt',folder,t,attempt,type_copula,type_margin,nu,nu_marg,numparticles),'ABCthreshold','-ascii')
     save(sprintf('%s/ABCdraws_stage%d_attempt%d_copula%d_marg%d_nu%d_numarg%1.1f_part%d.txt',folder,t,attempt,type_copula,type_margin,nu,nu_marg,numparticles),'ABCdraws','-ascii')
     save(sprintf('%s/numproposals_stage%d_attempt%d_copula%d_marg%d_nu%d_numarg%1.1f_part%d.txt',folder,t,attempt,type_copula,type_margin,nu,nu_marg,numparticles),'numproposals','-ascii')
-    save(sprintf('%s/numproposals0_stage%d_attempt%d_copula%d_marg%d_nu%d_numarg%1.1f_part%d.txt',folder,t,attempt,type_copula,type_margin,nu,nu_marg,numparticles),'numproposals0','-ascii')
     save(sprintf('%s/ess_stage%d_attempt%d_copula%d_marg%d_nu%d_numarg%1.1f_part%d.txt',folder,t,attempt,type_copula,type_margin,nu,nu_marg,numparticles),'ess','-ascii')
     save(sprintf('%s/weights_stage%d_attempt%d_copula%d_marg%d_nu%d_numarg%1.1f_part%d.txt',folder,t,attempt,type_copula,type_margin,nu,nu_marg,numparticles),'normweights','-ascii')
 
