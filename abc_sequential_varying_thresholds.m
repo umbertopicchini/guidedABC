@@ -22,7 +22,7 @@ numproposals = 0;
 tStart = tic;
 
 while success < numparticles
-    %success
+    success
     numproposals = numproposals +1;
           theta = feval([problem, '_prior'],[],1);
           bigtheta = param_unmask(theta,parmask,parbase);
@@ -287,7 +287,6 @@ while ABCthreshold > ABCthreshold_final  % keep doing as long as acceptance rate
     
     success = 0;
     numproposals = 0;
-    numproposals0 = 0;
    
     tStart = tic;
     while success < numparticles
@@ -347,10 +346,6 @@ while ABCthreshold > ABCthreshold_final  % keep doing as long as acceptance rate
            end           
 
            prior = feval([problem, '_prior'],theta,0);
-           if prior == 0
-               numproposal0=numproposals0+1;
-               continue  % go back to the while loop since the proposal is inadmissible
-           end
            bigtheta = param_unmask(theta,parmask,parbase);
            simdata = feval([problem, '_model'],bigtheta,covariates,1);
            simsumm = feval([problem, '_abc_summaries'],simdata);
@@ -426,7 +421,6 @@ while ABCthreshold > ABCthreshold_final  % keep doing as long as acceptance rate
     save(sprintf('%s/ABCthreshold_stage%d_attempt%d_copula%d_marg%d_nu%d_numarg%1.1f_part%d.dat',folder,t,attempt,type_copula,type_margin,nu,nu_marg,numparticles),'ABCthreshold','-ascii')
     save(sprintf('%s/ABCdraws_stage%d_attempt%d_copula%d_marg%d_nu%d_numarg%1.1f_part%d.dat',folder,t,attempt,type_copula,type_margin,nu,nu_marg,numparticles),'ABCdraws','-ascii')
     save(sprintf('%s/numproposals_stage%d_attempt%d_copula%d_marg%d_nu%d_numarg%1.1f_part%d.dat',folder,t,attempt,type_copula,type_margin,nu,nu_marg,numparticles),'numproposals','-ascii')
-    save(sprintf('%s/numproposals0_stage%d_attempt%d_copula%d_marg%d_nu%d_numarg%1.1f_part%d.dat',folder,t,attempt,type_copula,type_margin,nu,nu_marg,numparticles),'numproposals0','-ascii')
     save(sprintf('%s/ess_stage%d_attempt%d_copula%d_marg%d_nu%d_numarg%1.1f_part%d.dat',folder,t,attempt,type_copula,type_margin,nu,nu_marg,numparticles),'ess','-ascii')
     save(sprintf('%s/weights_stage%d_attempt%d_copula%d_marg%d_nu%d_numarg%1.1f_part%d.txt',folder,t,attempt,type_copula,type_margin,nu,nu_marg,numparticles),'normweights','-ascii')
     %  summ_weights = diag(mad(simsumm_all',0).^2);
