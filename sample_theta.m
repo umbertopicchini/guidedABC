@@ -54,7 +54,7 @@ switch type_margin
         doubleeulergamma=double(eulergamma);
         for i=1:dim
              bet=sqrt(proposal_cov(i,i)*6)/pi;
-            a = makedist('ExtremeValue','mu', proposal_mean(i)-bet* doubleeulergamma,'sigma',bet);
+            a = makedist('ExtremeValue','mu', proposal_mean(i)+bet* doubleeulergamma,'sigma',bet);
             theta(i)=icdf(a,AA(i));
             pd=[pd,a];
          end
