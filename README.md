@@ -1,5 +1,5 @@
 # guidedABC
-MATLAB code for Picchini &amp; Tamborrino (2024) "Guided sequential ABC schemes for intractable Bayesian models", forthcoming in Bayesian Analyis (https://doi.org/10.1214/24-BA1451), see also [arxiv:2206.12235](https://arxiv.org/abs/2206.12235)
+MATLAB code for Picchini &amp; Tamborrino (2024) "Guided sequential ABC schemes for intractable Bayesian models", forthcoming in Bayesian Analysis (https://doi.org/10.1214/24-BA1451), see also [arxiv:2206.12235](https://arxiv.org/abs/2206.12235)
 
 Each subfolder implements a different case-study, see the paper for details. Go into the desired folder then locate the "run" file and launch it (but first create folders for the output files, see below). The run files are heavily commented to provide guidance. Notice that output files are automatically stored into an appropriate subfolder, which however *must first be created* by the user as a subfolder of the desired case-study, and should be named exactly as the desired proposal sampler, ie one among 'blocked', 'blockedopt', 'hybrid', 'fullcond', 'full_cond_opt', 'olcm', 'standard'. 
 
